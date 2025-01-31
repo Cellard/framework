@@ -25,6 +25,7 @@ use ReflectionMethod;
 
 /**
  * @template TModel of \Illuminate\Database\Eloquent\Model
+ * @template TCollection of \Illuminate\Database\Eloquent\Collection
  *
  * @property-read HigherOrderBuilderProxy $orWhere
  * @property-read HigherOrderBuilderProxy $whereNot
@@ -421,7 +422,7 @@ class Builder implements BuilderContract
      * Create a collection of models from plain arrays.
      *
      * @param  array  $items
-     * @return \Illuminate\Database\Eloquent\Collection<int, TModel>
+     * @return TCollection<int, TModel>
      */
     public function hydrate(array $items)
     {
@@ -443,7 +444,7 @@ class Builder implements BuilderContract
      *
      * @param  string  $query
      * @param  array  $bindings
-     * @return \Illuminate\Database\Eloquent\Collection<int, TModel>
+     * @return TCollection<int, TModel>
      */
     public function fromQuery($query, $bindings = [])
     {
@@ -457,7 +458,7 @@ class Builder implements BuilderContract
      *
      * @param  mixed  $id
      * @param  array|string  $columns
-     * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel|null)
+     * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? TCollection<int, TModel> : TModel|null)
      */
     public function find($id, $columns = ['*'])
     {
@@ -473,7 +474,7 @@ class Builder implements BuilderContract
      *
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $ids
      * @param  array|string  $columns
-     * @return \Illuminate\Database\Eloquent\Collection<int, TModel>
+     * @return TCollection<int, TModel>
      */
     public function findMany($ids, $columns = ['*'])
     {
@@ -491,7 +492,7 @@ class Builder implements BuilderContract
      *
      * @param  mixed  $id
      * @param  array|string  $columns
-     * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel)
+     * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? TCollection<int, TModel> : TModel)
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
      */
@@ -525,7 +526,7 @@ class Builder implements BuilderContract
      *
      * @param  mixed  $id
      * @param  array|string  $columns
-     * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel)
+     * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? TCollection<int, TModel> : TModel)
      */
     public function findOrNew($id, $columns = ['*'])
     {
@@ -546,7 +547,7 @@ class Builder implements BuilderContract
      * @param  (\Closure(): TValue)|null  $callback
      * @return (
      *     $id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>)
-     *     ? \Illuminate\Database\Eloquent\Collection<int, TModel>
+     *     ? TCollection<int, TModel>
      *     : TModel|TValue
      * )
      */
@@ -757,7 +758,7 @@ class Builder implements BuilderContract
      * Execute the query as a "select" statement.
      *
      * @param  array|string  $columns
-     * @return \Illuminate\Database\Eloquent\Collection<int, TModel>
+     * @return TCollection<int, TModel>
      */
     public function get($columns = ['*'])
     {
